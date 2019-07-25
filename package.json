@@ -1,0 +1,17 @@
+{
+  "name": "stress-pt",
+  "version": "0.0.1",
+  "description": "Split words into syllables and mark the stressed character",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nlp",
+    "stress",
+    "syllables",
+    "accent"
+  ],
+  "author": "André Santos",
+  "license": "ISC"
+}
