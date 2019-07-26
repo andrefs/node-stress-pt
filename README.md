@@ -23,26 +23,27 @@ const {syllable, stressed, wordStressed} = require('stress-pt');
 
 ### syllable
 
-```js
-syllable(word);      // returns word with syllables separated by '|'
+Returns a word with syllables separated by '|'.
 
+```js
 syllable('batatas'); // 'ba|ta|tas'
 ```
 
 ### wordStressed
 
+Returns a word with syllables separated by '|' and the stressed vowel marked with ':'.
+
 ```js
-wordStressed(word);       // returns word with syllables separated by '|'
-                          // and stressed vowel marked with ':'
-wordStressed('batatas');  // 'ba|ta:|tas'
+wordStressed('batatas'); // 'ba|ta:|tas'
 ```
 
 ### stressed
 
+Returns multi word text with all the words with syllables separated and stressed vowel marked.
+
+
 ```js
-stressed(text);           // returns text with all the words with syllables
-                          // separated and stressed vowel marked
-stressed('Olá mundo!')    // 'O|lá: mu:n|do!'
+stressed('Olá mundo!'); // 'O|lá: mu:n|do!'
 ```
 
 ## To do
