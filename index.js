@@ -164,19 +164,44 @@ function syllable(word){
   return word;
 }
 
-//  }
-//  $p
-//}
-
-function stressed(){
-
+function stressed(text){
+  return text.replace(/(\p{L}+)/gu, w => wordStressed(w));
 }
 
-function wordStressed(){}
+function wordStressed(word, flag = false){
+  word = syllable(word);
+  let oldword = word;
+
+  // word with an accent character
+  word = oldword.replace(new RegExp('(\\p{L}*'+acento+')', 'iu'), '"$1');
+
+  // word ending with z l r i u is us
+  if(word === oldword){
+    word = word.replace(/(\p{L}*([zlr]|[iu]s?|um))$/iu, '"$1');
+  }
+  // accent in 2 syllable from the end
+  if(word === oldword){
+    word = word.replace(/(\p{L}+\|\p{L}+)$/u, '"$1');
+  }
+  // accent in the only syllable
+  if(word === oldword){
+    word = word.replace(/(\p{L})/u, '"$1');
+  }
+
+
+  if(!flag){
+    word = word
+    // accent in the 1.st vowel
+      .replace(new RegExp('"(([qg]u|'+consoante+')*([i]'+vogal+'|'+vogal+'|[yw]))', 'i'), '$1:')
+      // mv accent after accents
+      .replace(new RegExp(':('+acento+')', 'i'), '$1:')
+      .replace(/"/g, '');
+  }
+  return word;
+}
+
 
 module.exports = {
-spri,
-sylseppair,
   syllable,
   stressed,
   wordStressed
