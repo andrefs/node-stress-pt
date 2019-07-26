@@ -3,8 +3,8 @@
 Functions to split syllables and find stressed vowels in Portuguese
 text.
 
-Mostly a incomplete port to Node.js of the Perl module
-[Lingua::PT::PLN](https://metacpan.org/pod/Lingua::PT::PLN). 
+Mostly an incomplete port to Node.js of the Perl module
+[Lingua::PT::PLN](https://metacpan.org/pod/Lingua::PT::PLN).
 
 ## Install
 
@@ -34,7 +34,7 @@ syllable('batatas'); // 'ba|ta|tas'
 ```js
 wordStressed(word);       // returns word with syllables separated by '|'
                           // and stressed vowel marked with ':'
-wordStressed('batatas');  // 'ba|ta:|tas
+wordStressed('batatas');  // 'ba|ta:|tas'
 ```
 
 ### stressed
