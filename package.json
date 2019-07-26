@@ -4,7 +4,7 @@
   "description": "Split words into syllables and mark the stressed character",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha 'tests/**test.js'"
   },
   "keywords": [
     "nlp",
@@ -13,5 +13,8 @@
     "accent"
   ],
   "author": "André Santos",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0"
+  }
 }
