@@ -33,7 +33,8 @@ Object.keys(syl)
 
 const sylseppair = syl.breakpair.replace(/(\p{L})(\p{L})/gu, '(\?<=($1))(\?=($2))');
 
-function syllable(word){
+function syllable(word, opts={}){
+  const sylSep = opts.sylSep || '|';
   word = word
     .replace(new RegExp(sylseppair, 'g'), '|')
     .replace(/(\p{L})(?=(\p{L})(\p{L}))/ug, (m, m1, m2, m3) => (spri[m1.toLowerCase()] < spri[m2.toLowerCase()] && spri[m2.toLowerCase()] >= spri[m3.toLowerCase()]) ? m1+'|' : m1)
@@ -161,14 +162,19 @@ function syllable(word){
 
     .replace(/\|\|/g, '\|');
 
-  return word;
+  return sylSep === '|' ? word : word.replace(/\|/g, sylSep);
 }
 
-function stressed(text){
-  return text.replace(/(\p{L}+)/gu, w => wordStressed(w));
+function stressed(text, opts={}){
+  const sylSep = opts.sylSep || '|';
+  const res = text.replace(/(\p{L}+)/gu, w => wordStressed(w));
+
+  return sylSep === '|' ? res : res.replace(/\|/g, sylSep);
 }
 
-function wordStressed(word, flag = false){
+function wordStressed(word, opts={}){
+  const sylSep = opts.sylSep || '|';
+  const flag = opts.flag || false;
   word = syllable(word);
   let oldword = word;
 
@@ -197,7 +203,8 @@ function wordStressed(word, flag = false){
       .replace(new RegExp(':('+acento+')', 'i'), '$1:')
       .replace(/"/g, '');
   }
-  return word;
+
+  return sylSep === '|' ? word : word.replace(/\|/g, sylSep);
 }
 
 
