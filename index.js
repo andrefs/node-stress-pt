@@ -5,8 +5,8 @@ const vogal  = '[áéíóúâêôãõàèaeiouüöäëï]';
 const consoante = '[bcçdfghjklmñnpqrstvwyxz]';
 
 const syl = {
-   20 : " -.!?:;",
-   10 : "bçdfgjkpqtv",
+    20 : " -.!?:;",
+    10 : "bçdfgjkpqtv",
     8 : "sc",
     7 : "m",
     6 : "lzx",
@@ -17,7 +17,7 @@ const syl = {
     1 : "iu",
     breakpair:
       // "ie|ia|io|ee|oo|oa|sl|sm|sn|sc|sr|rn|bc|lr|lz|bd|bj|bg|bq|bt|bv|pt|pc|dj|pç|ln|nr|mn|tp|bf|bp",
-      "sl|sm|sn|sc|sr|rn|bc|lr|lz|bd|bj|bg|bq|bt|bv|pt|pc|dj|pç|ln|nr|mn|tp|bf|bp|xc|sç|ss|rr",
+        "sl|sm|sn|sc|sr|rn|bc|lr|lz|bd|bj|bg|bq|bt|bv|pt|pc|dj|pç|ln|nr|mn|tp|bf|bp|xc|sç|ss|rr|ll|pp",
       // dígrafos que se separam sempre: xc, sç, ss, rr, sc.
 };
 
@@ -52,7 +52,7 @@ function syllable(word, opts={}){
     .replace(new RegExp('([aeio])('+acento+')', 'i'), '$1|$2')
 
     .replace(new RegExp('([íúô])('+vogal+')', 'i'), '$1|$2')
-    .replace(/^a(o|e)/i, 'a|$1')                  // a|onde; a|orta; a|eródromo
+    .replace(/^a(o|e)/i, 'a|$1');                  // a|onde; a|orta; a|eródromo
 
   // Exemplo: his|tó|ria
   if(word.match(new RegExp('([\p{L}\|]*'+acento+'[\p{L}\|]*)\-', 'u'))){
@@ -118,6 +118,16 @@ function syllable(word, opts={}){
     .replace(/^re(?=i\|nau\|g)/ig, 're|') // re|i|nau|gu|rar
     .replace(/^re(?=[u]\|?[ntsr])/ig, 're|') // re|u|so
     .replace(new RegExp('(?<=^vi\\|de\\|)o('+vogal+')', 'ig'), 'o|$1') // vi|de|o|a|ma|dor
+
+    .replace(/([ao])\|gn/ig, '$1g|n') // mag|ne|ti|za|ção
+    .replace(/([ao])\|ft/ig, '$1f|t') // of|tal|mo|lo|gi|a
+    .replace(/([e])\|p([st])/ig, '$1p|$2') // an|tis|sép|ti|co
+    .replace(/te\|cn/ig, 'tec|n') // na|no|tec|no|lo|gi|a
+    .replace(/wa\|tt/ig, 'watt') // watt
+    .replace(/o\|ps([o])/ig, 'op|s$1') // op|so|ni|na
+    .replace(/([aáàãeêéiíoóõuú])\|f([k])/ig, '$1f|$2') // kaf|ki|a|no
+    .replace(/r([ií])\|t([^aáàãeêéiíoóõuú])/ig, 'r$1t|$2') // lo|ga|rit|mo
+    .replace(/i\|g([^aáàãeêéiíoóõuú])/ig, 'ig|$1')
 
     .replace(new RegExp('^su\\|b(?!'+vogal+')', 'ig'), 'sub|')
     .replace(new RegExp('(?<=[\\|\-])su\\|b(?!'+vogal+')', 'ig'), 'sub|')
