@@ -19,6 +19,7 @@
   "author": "André Santos",
   "license": "ISC",
   "devDependencies": {
-    "chai": "^4.2.0"
+    "chai": "^4.2.0",
+    "mocha": "^10.2.0"
   }
 }
