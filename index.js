@@ -125,9 +125,9 @@ function syllable(word, opts={}){
     .replace(/te\|cn/ig, 'tec|n') // na|no|tec|no|lo|gi|a
     .replace(/wa\|tt/ig, 'watt') // watt
     .replace(/o\|ps([o])/ig, 'op|s$1') // op|so|ni|na
-    .replace(new RegExp('(' + vogal + ')\|f([k])', 'ig'), '$1f|$2') // kaf|ki|a|no
-    .replace(new RegExp('r([ií])\|t(' + consoante + ')', 'ig'), 'r$1t|$2') // lo|ga|rit|mo
-    .replace(new RegExp('i\|g(' + consoante + ')', 'ig'), 'ig|$1') // ig|ni|ção
+    .replace(new RegExp('('+vogal+')\\|f([k])', 'ig'), '$1f|$2') // kaf|ki|a|no
+    .replace(new RegExp('r([ií])\\|t('+consoante+')', 'ig'), 'r$1t|$2') // lo|ga|rit|mo
+    .replace(new RegExp('i\\|g('+consoante+')', 'ig'), 'ig|$1') // ig|ni|ção
 
     .replace(new RegExp('^su\\|b(?!'+vogal+')', 'ig'), 'sub|')
     .replace(new RegExp('(?<=[\\|\-])su\\|b(?!'+vogal+')', 'ig'), 'sub|')
